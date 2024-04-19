@@ -257,6 +257,11 @@ def load_tfds(
 
     data = get_splits(cfg.data.labels_path, cfg.data.dataset, split)
     img_path = osp.join(cfg.data.path, 'cropped_images', str(cfg.model.input_size))
+    parts = img_path.rsplit('\\', 1)  # Split based on backslashes
+    if len(parts) == 2:
+        img_path = parts[-1]  # Use path without the last folder (assumed size)
+    else:
+        img_path = img_path  # Path doesn't contain backslashes, keep it as is
     img_paths = [osp.join(img_path, folder, name) for (folder, name) in zip(data.img_folder, data.img_name)]
 
     xys = np.zeros((len(data), 7, 3))  # third column for visibility

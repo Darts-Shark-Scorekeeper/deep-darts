@@ -64,7 +64,7 @@ def est_cal_pts(xy):
 def predict(
         yolo,
         cfg,
-        labels_path='./dataset/labels.pkl',
+        labels_path='./dataset/labels_d1_d2.pkl',
         dataset='d1',
         split='val',
         max_darts=3,
@@ -87,6 +87,7 @@ def predict(
         xys[i, :_xy.shape[0], 2] = 1
     xys = xys.astype(np.float32)
 
+    ti = time()
     preds = np.zeros((len(img_paths), 4 + max_darts, 3))
     print('Making predictions with {}...'.format(cfg.model.name))
 
