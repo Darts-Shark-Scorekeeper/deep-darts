@@ -174,6 +174,7 @@ def get_dart_scores(xy, cfg, numeric=False):
                     scores[i] = scores[i] * 2 if 'D' in s else scores[i] * 3
                 else:
                     scores[i] = int(s)
+    print(scores)                
     return scores
 
 def total_score(scores):
